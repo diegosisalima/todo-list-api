@@ -1,0 +1,21 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Mi todo-list api",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/v1/users": {
+      "get": {
+        "respomses": {
+          "200": {
+            "descripcion": "Obtener todos mis usuarios"
+          },
+          "400": {
+            "descripcion": "ocuarrio un error al intentar obtner todos los datos"
+          }
+        }
+      }
+    }
+  }
+}
