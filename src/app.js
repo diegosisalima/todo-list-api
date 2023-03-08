@@ -5,6 +5,7 @@ const express = require("express"),
 const swaggerUi = require("swagger-ui-express");
 const swaggerDoc = require("./swagger.json");
 const config = require("../config").api;
+const cors = require("cors");
 //routes
 const usersRoutes = require("./users/users.routes.js");
 const authRoute = require("./auth/auth.routes.js");
@@ -12,6 +13,7 @@ const projectsRoutes = require("./projects/projects.routes.js");
 const tasksRoutes = require("./tasks/tasks.routes.js");
 
 app.use(express.json());
+app.use(cors());
 
 db.authenticate()
   .then(() => {
