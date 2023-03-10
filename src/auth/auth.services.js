@@ -12,7 +12,7 @@ const postLogin = (req, res) => {
         });
         res
           .status(200)
-          .json({ message: "successful credentials", data: token });
+          .json({ message: "successful credentials", token: token });
       } else {
         res.status(400).json({ message: "invalid credentials" });
       }

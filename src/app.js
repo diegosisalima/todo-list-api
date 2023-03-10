@@ -29,7 +29,12 @@ db.sync()
 
 initModels();
 app.get("/", (req, res) => {
-  res.json({ message: "server ok" });
+  res.status(200).json({
+    message: "server ok",
+    data: {
+      docs: `${config.host}/api/v1/docs`,
+    },
+  });
 });
 
 app.use("/api/v1", usersRoutes);
@@ -38,23 +43,6 @@ app.use("/api/v1", projectsRoutes);
 app.use("/api/v1", tasksRoutes);
 
 app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
-
-/*
-app.post("/users", (req, res) => {
-  const body = req.body;
-  const newUser = {
-    id: uuid,
-    user: body.user,
-    email: body.email,
-    password: bcrypt.hashSync(body.password, 10),
-  };
-  Users.create(newUser)
-    .then((data) =>
-      res.status(201).json({ message: "User created successfully", data })
-    )
-    .catch((er) => res.status(400).json({ error: er.message }));
-});
-*/
 
 app.use("*", (req, res) => {
   responseHandlers.error({

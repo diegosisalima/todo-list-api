@@ -30,7 +30,7 @@ const findUserById = async (id) => {
       id,
     },
     attributes: {
-      exclude: ["isActive", "updatedAt"],
+      exclude: ["id", "password"],
     },
   });
   return result;

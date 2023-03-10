@@ -19,13 +19,10 @@ const findAllProjectsByUser = async (userId) => {
       userId,
     },
     attributes: {
-      exclude: ["id", "userId"],
+      exclude: ["userId"],
     },
     include: {
       model: Tasks,
-      attributes: {
-        exclude: ["id", "projectId"],
-      },
     },
   });
   return result;

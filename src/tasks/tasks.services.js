@@ -6,8 +6,8 @@ const postNewTask = (req, res) => {
   const { isComplete, ...body } = req.body;
   tasksControllers
     .createNewTask(userId, projectId, body)
-    .then((data) => {
-      res.status(201).json({ message: "Task created successfully", data });
+    .then(() => {
+      res.status(201).json({ message: "Task created successfully" });
     })
     .catch((er) => {
       res.status(400).json({ error: er.message });
@@ -22,7 +22,7 @@ const patchMyTask = (req, res) => {
   tasksControllers
     .updateTask({ taskId, userId, projectId, isComplete: body.isComplete })
     .then(() => {
-      res.status(201).json({ message: "Task is completed" });
+      res.status(200).json({ message: "task status updated successfully" });
     })
     .catch((err) => {
       res.status(400).json({ message: err.message });
@@ -35,8 +35,8 @@ const deleteMytask = (req, res) => {
   const taskId = req.params.taskId;
   tasksControllers
     .deleteMytask(taskId, projectId, userId)
-    .then((result) => {
-      res.status(201).json({ message: "Task eliminated successfully", result });
+    .then(() => {
+      res.status(200).json({ message: "Task eliminated successfully" });
     })
     .catch((err) => {
       res.status(400).json({ message: err.message });

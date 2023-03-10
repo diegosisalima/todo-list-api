@@ -6,9 +6,9 @@ const postNewProject = (req, res) => {
   projectsControllers
     .createNewProject(body, userId)
     .then((data) => {
-      res.status(201).json({ message: "project created successfully", data });
+      res.status(201).json({ message: "project created successfully" });
     })
-    .catch((er) => res.status(400).json({ message: er }));
+    .catch((er) => res.status(400).json({ message: er.message }));
 };
 
 const getAllMyProjects = (req, res) => {
@@ -30,8 +30,8 @@ const patchMyProject = (req, res) => {
   };
   projectsControllers
     .updateProjectByUser(userId, projectId, body)
-    .then((data) => {
-      res.status(201).json({ message: "project updated successfully" });
+    .then(() => {
+      res.status(200).json({ message: "project updated successfully" });
     })
     .catch((er) => res.status(400).json({ error: er.message }));
 };
@@ -40,7 +40,7 @@ const deleteMyProject = (req, res) => {
   const projectId = req.params.id;
   projectsControllers
     .deleteProjectByUser(userId, projectId)
-    .then(res.status(200).json({ message: "eliminated successfully" }))
+    .then(res.status(200).json({ message: "project eliminated successfully" }))
     .catch((er) => res.status(400).json({ error: er.message }));
 };
 module.exports = {
